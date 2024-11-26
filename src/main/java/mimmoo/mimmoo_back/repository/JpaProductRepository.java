@@ -2,6 +2,7 @@ package mimmoo.mimmoo_back.repository;
 
 import jakarta.persistence.EntityManager;
 import mimmoo.mimmoo_back.domain.Product;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,7 +16,13 @@ public class JpaProductRepository implements ProductRepository {
         this.em = em;
     }
     @Override
-    public List<Product> findAll() {
-        return em.createQuery("select m from Member m", Product.class).getResultList();
+    public Product save(Product product) {
+        em.persist(product);
+        return product;
+    }
+
+    @Override
+    public List<Product> findAll(){
+        return em.createQuery("select p from Product p", Product.class).getResultList();
     }
 }
