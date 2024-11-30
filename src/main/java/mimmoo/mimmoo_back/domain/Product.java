@@ -1,17 +1,22 @@
 package mimmoo.mimmoo_back.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.UUID;
 
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name="uuid2", strategy = "uuid2")
+    @Column(name = "id", columnDefinition = "varchar(255)")
+    private String id;
     private String name;
     private Integer price;
     private String type;
 
-    public Long getId() { return id; }
+    public String getId() { return id; }
     public String getName() { return name; }
     public void setName(String name) {
         this.name = name;

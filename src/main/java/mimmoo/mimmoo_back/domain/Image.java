@@ -1,25 +1,23 @@
 package mimmoo.mimmoo_back.domain;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Image {
-    private Long id;
-    private String base64Image;
+    @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name="uuid2", strategy = "uuid2")
+    @Column(name = "id", columnDefinition = "varchar(255)")
+    private String id;
+    private String productId;
+    private String path;
 
-    public Long getId() {
-        return id;
-    }
+    public String getId() { return id; }
+    public String getProductId() { return productId; }
+    public void setProductId(String productId) { this.productId = productId; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getPath() { return path; }
 
-    public String getBase64Image() {
-        return getBase64Image();
-    }
-
-    public void setBase64Image(String base64Image) {
-        this.base64Image = base64Image;
-    }
+    public void setPath(String path) { this.path = path; }
 }

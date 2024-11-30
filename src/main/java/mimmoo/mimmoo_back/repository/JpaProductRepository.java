@@ -25,4 +25,11 @@ public class JpaProductRepository implements ProductRepository {
     public List<Product> findAll(){
         return em.createQuery("select p from Product p", Product.class).getResultList();
     }
+
+    @Override
+    public Product findById(String id) {
+        return em.createQuery(
+                "select p from Product p where p.id = :id", Product.class
+        ).setParameter("id", id).getSingleResult();
+    }
 }

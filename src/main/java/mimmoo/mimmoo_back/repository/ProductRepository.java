@@ -10,4 +10,5 @@ public interface ProductRepository {
 
     List<Product> findAll();
     Product save(Product product);
+    Product findById(String id);
 }
